@@ -2,11 +2,11 @@ from random import randint
 
 
 class Creature:
-    maxHP = 10
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, hp: int = 10):
         self.name = name
-        self.HP = Creature.maxHP
+        self.HP = hp
+        self.maxHP = hp
         self.abilities = {
             "attack": 1,
             "defence": 5,
@@ -31,13 +31,14 @@ class Creature:
     def reduce_life(self, points: int):
         if self.HP < points:
             self.HP = 0
+            print(f"{self.get_name()} fainted.")
         else:
             self.HP -= points
 
     def attack(self, target):
         print(f"{self.get_name()} attacks {target.get_name()}")
         roll = randint(1, 20)
-        if roll > target.get_defence() + target.get_speed:
+        if roll > target.get_defence() + target.get_speed():
             bonus = randint(1, 4)
             damage = self.get_attack() + bonus
             print(f"Attack hits for {damage} damage!")
@@ -60,4 +61,11 @@ class Creature:
 
     def turn(self, round_num, target_list):
         target = self.auto_select(target_list)
-        self.attack(target)
+        if target:
+            self.attack(target)
+
+    def __str__(self):
+        return f"{self.name}, health: {self.check_life()}"
+
+    def __repr__(self):
+        return self.__str__()

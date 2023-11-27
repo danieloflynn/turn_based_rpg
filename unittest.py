@@ -1,5 +1,4 @@
 from Creatures import Creature
-from unittest.mock import patch
 import random
 
 # Test 1
@@ -12,6 +11,8 @@ assert c1.get_attack() == 1, "Should be 1"
 assert c1.get_defence() == 5, "Should be 5"
 assert c1.get_speed() == 5, "Should be 5"
 
+c2 = Creature("Test", 20)
+assert c2.check_life() == 20, f"Life should be 20, is {c2.check_life()}"
 
 # Test 2
 # Check reduce life method
@@ -27,8 +28,8 @@ assert c1.check_life() == 9, "Life should be 9"
 c1.reduce_life(12)
 assert c1.check_life() == 0, "Life should be 0"
 
-
-cList = [Creature("A"), Creature("B")]
-
+# Can reduce life on a creature with custom health
+c2.reduce_life(12)
+assert c2.check_life() == 8, f"Life should be 8, is {c2.check_life()}"
 
 print("All unit tests ok")
