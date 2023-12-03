@@ -37,3 +37,16 @@ class Warrior(Creature):
         if self.isShieldUp:
             print(f"{self.get_name()} puts their shield down.")
             self.isShieldUp = 0
+
+    def turn(self, round_num, target_list):
+        target = self.auto_select(target_list)
+        if target:
+            match round_num % 4:
+                case 0:
+                    self.shield_down()
+                    self.attack(target)
+                case 1:
+                    self.attack(target)
+                    self.shield_up()
+                case _:
+                    self.attack(target)
