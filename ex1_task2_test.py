@@ -1,11 +1,10 @@
-from Creatures import Orc, Goblin
+from Goblin import Goblin
+from Orc import Orc
 
 
 team1 = [Orc("Dan")]
 team2 = [Goblin("Adam")]
 
-c = team1[0].auto_select(team2)
-team1[0].attack(c)
 for member in team2:
     print(member.check_life())
 for round in range(1, 21):

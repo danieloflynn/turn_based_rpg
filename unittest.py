@@ -1,4 +1,6 @@
-from Creatures import Creature, Goblin, Orc
+from Creatures import Creature
+from Goblin import Goblin
+from Orc import Orc
 import random
 
 # Test 1
