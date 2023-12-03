@@ -1,13 +1,9 @@
-from Creatures import Creature
-from Goblin import Goblin
-from Orc import Orc
-from Warrior import Warrior
-import random
 import creature_unittest
 import goblin_unittest
 import orc_unittest
 import warrior_unittest
 import archer_unittest
+import fighter_unittest
 
 # Test Creatures
 print("Testing Creatures")
@@ -42,6 +38,14 @@ print("Testing Archer...")
 print("------------------------------------------------------")
 archer_unittest.test()
 print("Archer passed.")
+
+
+# Test 6 - Figher
+print("------------------------------------------------------")
+print("Testing Fighter...")
+print("------------------------------------------------------")
+fighter_unittest.test()
+print("Fighter passed.")
 print("------------------------------------------------------")
 
 print("All unit tests ok")
