@@ -4,16 +4,17 @@ from random import randint
 
 
 class Creature:
+    # Define default abilities to be used if none specified
     default_abilities = {
         "attack": 1,
         "defence": 5,
         "speed": 5
     }
 
-    def __init__(self, name: str, hp: int = 10, abilities=default_abilities):
+    def __init__(self, name: str, HP: int = 10, abilities=default_abilities):
         self.name = name
-        self.HP = hp
-        self.maxHP = hp
+        self.HP = HP
+        self.maxHP = HP
         self.abilities = abilities
 
     def get_name(self):

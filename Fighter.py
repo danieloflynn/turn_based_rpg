@@ -28,6 +28,7 @@ class Fighter(Creature):
         return max(alive_targets, key=lambda creature: creature.check_life())
 
     def turn(self, round_num: int, target_list: list):
+        print(f"{self.get_name()} unleashes a flurry of strikes")
         target = self.auto_select(target_list)
         self.attack(target)
 

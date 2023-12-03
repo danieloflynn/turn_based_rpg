@@ -72,3 +72,7 @@ def test():
     assert targets[0].check_life(
     ) == 6, f"Attack should picked target 1, life should be 4, is {targets[0].check_life()}"
     print("Creature attack, auto select and turn methods passed.")
+
+
+if __name__ == "__main__":
+    test()

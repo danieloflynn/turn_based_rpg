@@ -19,26 +19,20 @@ class Orc(Creature):
         self.rage_abilities = rage_abilities
         self.inRage = 0
 
-    def get_attack(self):
-        return self.abilities["attack"] + self.inRage * self.rage_abilities["attack"]
-
-    def get_defence(self):
-        return self.abilities["defence"] + self.inRage * self.rage_abilities["defence"]
-
-    def get_speed(self):
-        return self.abilities["speed"] + self.inRage * self.rage_abilities["speed"]
-
     def attack(self, target):
-        if self.inRage == 1:
+        if self.inRage:
             print(f"{self.name} cooled down.")
             self.inRage = 0
-
+            self.abilities["attack"] -= self.rage_abilities["attack"]
+            self.abilities["defence"] -= self.rage_abilities["defence"]
         super().attack(target)
 
     def heavy_attack(self, target):
-        if self.inRage == 0:
+        if not self.inRage:
             print(f"{self.name} is in rage.")
             self.inRage = 1
+            self.abilities["attack"] += self.rage_abilities["attack"]
+            self.abilities["defence"] += self.rage_abilities["defence"]
 
         super().attack(target)
 

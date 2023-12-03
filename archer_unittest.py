@@ -14,6 +14,7 @@ def test():
 
     # Test 2 - check power shot works and attack/defence get changed
     random.seed(1)
+    print(a1.powerup_abilities)
     a1.power_shot(targets[0])
     assert targets[0].check_life() == 18
     assert a1.get_attack() == 10
@@ -87,3 +88,7 @@ def test():
     targets[1].heal(12)
     a1.turn(4, targets)
     assert targets[1].check_life() == 8
+
+
+if __name__ == "__main__":
+    test()

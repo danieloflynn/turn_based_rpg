@@ -28,4 +28,8 @@ def test():
     o2.heal(15)
     o1.heavy_attack(o2)
     o1.heavy_attack(o2)
-    assert o2.check_life() == 36, "Should be 1"
+    assert o2.check_life() == 36, "Should be 36"
+
+
+if __name__ == "__main__":
+    test()

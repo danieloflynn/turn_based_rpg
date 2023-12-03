@@ -20,25 +20,31 @@ class Archer(Creature):
         self.powerup_abilities = powerup_abilities
         self.powerUp = 0
 
-    def get_attack(self):
-        return self.abilities["attack"] + self.powerUp * self.powerup_abilities["attack"]
-
-    def get_defence(self):
-        return self.abilities["defence"] + self.powerUp * self.powerup_abilities["defence"]
-
-    def get_speed(self):
-        return self.abilities["speed"] + self.powerUp * self.powerup_abilities["speed"]
-
     def attack(self, target):
         if self.powerUp:
             print(f"{self.get_name()} is powering down...")
+
+            print(f"{self.get_name()}'s attack is reduced.")
+            self.abilities["attack"] -= self.powerup_abilities["attack"]
+
+            print(f"{self.get_name()}'s defence rises.")
+            self.abilities["defence"] -= self.powerup_abilities["defence"]
+
             self.powerUp = 0
         super().attack(target)
 
     def power_shot(self, target):
         if not self.powerUp:
             print(f"{self.get_name()} is powering up...")
+
+            print(f"{self.get_name()}'s attack rises.")
+            self.abilities["attack"] += self.powerup_abilities["attack"]
+
+            print(f"{self.get_name()}'s defence is reduced.")
+            self.abilities["defence"] += self.powerup_abilities["defence"]
+
             self.powerUp = 1
+
         print(f"{self.get_name()} attacks {target.get_name()} with power shot")
         roll = max(randint(1, 20), randint(1, 20))
 
