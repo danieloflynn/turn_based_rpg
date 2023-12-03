@@ -20,6 +20,7 @@ def test():
 
     # Check heavy attack works
     o1.heavy_attack(o2)
+    print(o2.get_defence())
     # Attack/defence values should now be different
     assert o1.get_attack() == 10, f"Should be 10"
     assert o1.get_defence() == 5, f"Should be 5"
