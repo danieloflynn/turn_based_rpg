@@ -15,7 +15,7 @@ class Warrior(Creature):
     }
 
     def __init__(self, name: str, hp: int = 50, abilities=default_abilities, shield_abilities=default_shield):
-        super().__init__(name, hp, abilities)
+        Creature.__init__(self, name, hp, abilities)
         self.shield_abilities = shield_abilities
         self.isShieldUp = 0
 

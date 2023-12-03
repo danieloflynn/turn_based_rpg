@@ -9,7 +9,7 @@ class Fighter(Creature):
     }
 
     def __init__(self, name: str, hp: int = 50, abilities: dict = default_abilities):
-        super().__init__(name, hp, abilities)
+        Creature.__init__(self, name, hp, abilities)
 
     def secondary_attack(self, target: Creature):
         if not target:

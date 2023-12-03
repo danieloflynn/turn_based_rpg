@@ -4,6 +4,7 @@ import orc_unittest
 import warrior_unittest
 import archer_unittest
 import fighter_unittest
+import orcgeneral_unittest
 
 # Test Creatures
 print("Testing Creatures")
@@ -40,12 +41,20 @@ archer_unittest.test()
 print("Archer passed.")
 
 
-# Test 6 - Figher
+# Test 6 - Fighter
 print("------------------------------------------------------")
 print("Testing Fighter...")
 print("------------------------------------------------------")
 fighter_unittest.test()
 print("Fighter passed.")
+print("------------------------------------------------------")
+
+# Test 7 - Orc General
+print("------------------------------------------------------")
+print("Testing OrcGeneral...")
+print("------------------------------------------------------")
+orcgeneral_unittest.test()
+print("OrcGeneral passed.")
 print("------------------------------------------------------")
 
 print("All unit tests ok")

@@ -15,7 +15,7 @@ class Orc(Creature):
     }
 
     def __init__(self, name: str, hp: int = 50, abilities=default_abilities, rage_abilities=default_rage):
-        super().__init__(name, hp, abilities)
+        Creature.__init__(self, name, hp, abilities)
         self.rage_abilities = rage_abilities
         self.inRage = 0
 
@@ -25,7 +25,7 @@ class Orc(Creature):
             self.inRage = 0
             self.abilities["attack"] -= self.rage_abilities["attack"]
             self.abilities["defence"] -= self.rage_abilities["defence"]
-        super().attack(target)
+        Creature.attack(self, target)
 
     def heavy_attack(self, target):
         if not self.inRage:
@@ -34,7 +34,7 @@ class Orc(Creature):
             self.abilities["attack"] += self.rage_abilities["attack"]
             self.abilities["defence"] += self.rage_abilities["defence"]
 
-        super().attack(target)
+        Creature.attack(self, target)
 
     def turn(self, round_num, target_list):
         target = self.auto_select(target_list)

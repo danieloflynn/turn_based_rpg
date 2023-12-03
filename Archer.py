@@ -16,7 +16,7 @@ class Archer(Creature):
     }
 
     def __init__(self, name: str, hp: int = 30, abilities=default_abilities, powerup_abilities=default_powerup):
-        super().__init__(name, hp, abilities)
+        Creature.__init__(self, name, hp, abilities)
         self.powerup_abilities = powerup_abilities
         self.powerUp = 0
 
@@ -31,7 +31,7 @@ class Archer(Creature):
             self.abilities["defence"] -= self.powerup_abilities["defence"]
 
             self.powerUp = 0
-        super().attack(target)
+        Creature.attack(self, target)
 
     def power_shot(self, target):
         if not self.powerUp:

@@ -9,4 +9,4 @@ class Goblin(Creature):
     }
 
     def __init__(self, name: str, hp: int = 15, abilities=default_abilities):
-        super().__init__(name, hp, abilities)
+        Creature.__init__(self, name, hp, abilities)
