@@ -15,10 +15,7 @@ class Orc(Creature):
     }
 
     def __init__(self, name: str, hp: int = 50, abilities=default_abilities, rage_abilities=default_rage):
-        self.name = name
-        self.HP = hp
-        self.maxHP = hp
-        self.abilities = abilities
+        super().__init__(name, hp, abilities)
         self.rage_abilities = rage_abilities
         self.inRage = 0
 

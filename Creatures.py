@@ -1,4 +1,6 @@
 from random import randint
+# TODO: Make variables private
+# TODO: Make PowerCreature class
 
 
 class Creature:
@@ -56,13 +58,25 @@ class Creature:
         else:
             print("Atack missed...")
 
-    def auto_select(self, target_list):
+    def get_alive(self, target_list: list):
+        """Gets the list of alive creatures from a target list
+
+        Args:
+            target_list (_list_): List of potential targets
+        Returns:
+            alive_targets: List of alive targets 
+        """
         alive_targets = []
         for target in target_list:
             if target.check_life() != 0:
                 alive_targets += [target]
 
-        if len(alive_targets) == 0:
+        return alive_targets
+
+    def auto_select(self, target_list):
+        alive_targets = self.get_alive(target_list)
+
+        if not alive_targets:
             return
 
         rand = randint(0, len(alive_targets)-1)
