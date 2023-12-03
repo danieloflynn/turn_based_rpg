@@ -47,7 +47,7 @@ class Archer(Creature):
 
         if roll > target.get_defence() + target.get_speed():
             bonus = randint(1, 8)
-            damage = self.get_attack + bonus
+            damage = self.get_attack() + bonus
             print(f"Attack hits for {damage} damage!")
             target.reduce_life(damage)
         else:
@@ -59,7 +59,7 @@ class Archer(Creature):
         if not alive_targets:
             return
 
-        return min(alive_targets, lambda creature: creature.check_life())
+        return min(alive_targets, key=lambda creature: creature.check_life())
 
     def turn(self, round_num, target_list):
         target = self.auto_select(target_list)
