@@ -36,7 +36,16 @@ class Creature:
         else:
             self.HP -= points
 
+    def heal(self, points: int):
+        if self.HP + points > self.maxHP:
+            self.HP = self.maxHP
+        else:
+            self.HP += points
+        print(f"{self.get_name()} is healed by {points} points.")
+        print(f"{self.get_name()}'s health is now {self.check_life()}.")
+
     def attack(self, target):
+        # TODO: if health is 0, don't allow attack
         print(f"{self.get_name()} attacks {target.get_name()}")
         roll = randint(1, 20)
         if roll > target.get_defence() + target.get_speed():
@@ -79,7 +88,7 @@ class Goblin(Creature):
     }
 
     def __init__(self, name: str, hp: int = 15, abilities=default_abilities):
-        super().__init__(self, name, hp, abilities)
+        super().__init__(name, hp, abilities)
 
 
 class Orc(Creature):
@@ -122,7 +131,7 @@ class Orc(Creature):
     def heavy_attack(self, target):
         if self.inRage == 0:
             print(f"{self.name} is in rage.")
-            self.inRage == 1
+            self.inRage = 1
 
         super().attack(target)
 
