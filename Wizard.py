@@ -145,8 +145,7 @@ class Wizard(Creature):
 
         while not input_valid:
             user_input = input("Enter action: ").toLower()
-
-        print(f"Select an ability to use:")
+            # TODO: Continue here
 
     def turn(self, round_num: int, target_list: list[Creature], allies=None):
         if self.player:
