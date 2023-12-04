@@ -10,15 +10,17 @@ class Wizard(Creature):
         "arcana": 10
     }
 
-    def __init__(self, name: str, hp: int = 20, abilities: dict = default_abilities):
+    def __init__(self, name: str, hp: int = 20, abilities: dict = default_abilities, player=False):
         Creature.__init__(self, name, hp, abilities)
         self.max_mana = 100
         self.mana = self.max_mana
+        self.player = player
 
     def get_mana(self):
         return self.mana
 
     def increase_mana(self, points: int):
+        print(f"Mana +{points}")
         if self.get_mana() + points > self.max_mana:
             self.mana = self.max_mana
 
@@ -29,6 +31,7 @@ class Wizard(Creature):
         if points > self.get_mana():
             print(f"{self.get_name()} does not have enough mana.")
             return False
+        print(f"Mana -{points}")
         self.mana -= points
         return True
 
@@ -40,7 +43,7 @@ class Wizard(Creature):
         self.increase_mana(20)
 
     def recharge(self):
-        print(f"{self.get_name()} is recharging")
+        print(f"{self.get_name()} channels magic energy...")
         self.increase_mana(30)
         print(f"{self.get_name()}'s mana is now {self.mana}.")
 
@@ -118,3 +121,41 @@ class Wizard(Creature):
                 print(
                     f"Error, please enter a number between 1 and {len(alive_targets)}")
         return alive_targets[choice]
+
+    def player_turn(self, round_num: int, target_list: list[Creature], allies=None):
+        alive_targets = self.get_alive(target_list)
+
+        if not alive_targets:
+            return
+        print("=====================================")
+        print(self)
+        print("Allies:")
+        alive_allies = self.get_alive(allies)
+        if alive_allies:
+            for ally in alive_allies:
+                print(ally)
+        else:
+            print("None.")
+        print("=====================================")
+        print("Actions. F: Attack R: Recharge Mana")
+        print("Spells. 1: Heal 2: Firebolt 3: Mass Heal 4: Fire Storm")
+        print("To Quit game type: Quit")
+        print("=====================================")
+        input_valid = False
+
+        while not input_valid:
+            user_input = input("Enter action: ").toLower()
+
+        print(f"Select an ability to use:")
+
+    def turn(self, round_num: int, target_list: list[Creature], allies=None):
+        if self.player:
+            self.player_turn(round_num, target_list)
+        else:
+            Creature.turn(self, round_num, target_list)
+
+    def __str__(self):
+        if self.player:
+            return f"Player {self.get_name()} HP: {self.HP}/{self.maxHP} Mana: {self.get_mana()}/{self.max_mana}"
+
+        return f"{self.get_name()} HP: {self.HP}/{self.maxHP} Mana: {self.get_mana()}/{self.max_mana}"

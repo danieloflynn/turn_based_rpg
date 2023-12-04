@@ -20,7 +20,7 @@ class Boss(Orc):
             case 'Random':
                 return Orc.auto_select(self, target_list)
 
-    def turn(self, round_num, target_list):
+    def turn(self, round_num, target_list, allies=None):
         if round_num % 4 == 1:
             target = self.auto_select(target_list, "Strong")
             for _ in range(3):

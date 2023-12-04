@@ -83,7 +83,7 @@ class Creature:
         rand = randint(0, len(alive_targets)-1)
         return alive_targets[rand]
 
-    def turn(self, round_num, target_list):
+    def turn(self, round_num, target_list, allies=None):
         target = self.auto_select(target_list)
         if target:
             self.attack(target)

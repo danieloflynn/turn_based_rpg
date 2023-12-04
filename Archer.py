@@ -67,7 +67,7 @@ class Archer(Creature):
 
         return min(alive_targets, key=lambda creature: creature.check_life())
 
-    def turn(self, round_num, target_list):
+    def turn(self, round_num, target_list, allies=None):
         target = self.auto_select(target_list)
 
         if target:
