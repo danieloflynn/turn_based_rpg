@@ -6,6 +6,7 @@ import archer_unittest
 import fighter_unittest
 import orcgeneral_unittest
 import goblinking_unittest
+import boss_unittest
 
 # Test Creatures
 print("Testing Creatures")
@@ -48,7 +49,6 @@ print("Testing Fighter...")
 print("------------------------------------------------------")
 fighter_unittest.test()
 print("Fighter passed.")
-print("------------------------------------------------------")
 
 # Test 7 - Orc General
 print("------------------------------------------------------")
@@ -56,15 +56,22 @@ print("Testing OrcGeneral...")
 print("------------------------------------------------------")
 orcgeneral_unittest.test()
 print("OrcGeneral passed.")
-print("------------------------------------------------------")
 
 # Test 8 - Goblin King
 print("------------------------------------------------------")
 print("Testing Goblin King...")
 print("------------------------------------------------------")
-orcgeneral_unittest.test()
+goblinking_unittest.test()
 print("Goblin King passed.")
-print("------------------------------------------------------")
 
+# Test 9 - Boss
+print("------------------------------------------------------")
+print("Testing Boss...")
+print("------------------------------------------------------")
+boss_unittest.test()
+print("Boss passed.")
+
+
+print("------------------------------------------------------")
 print("All unit tests ok")
 print("------------------------------------------------------")
