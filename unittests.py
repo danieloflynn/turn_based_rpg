@@ -7,6 +7,7 @@ import fighter_unittest
 import orcgeneral_unittest
 import goblinking_unittest
 import boss_unittest
+import wizard_unittest
 
 # Test Creatures
 print("Testing Creatures")
@@ -70,6 +71,13 @@ print("Testing Boss...")
 print("------------------------------------------------------")
 boss_unittest.test()
 print("Boss passed.")
+
+# Test 9 - Wizard
+print("------------------------------------------------------")
+print("Testing Wizard...")
+print("------------------------------------------------------")
+wizard_unittest.test()
+print("Wizard passed.")
 
 
 print("------------------------------------------------------")

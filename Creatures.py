@@ -89,7 +89,7 @@ class Creature:
             self.attack(target)
 
     def __str__(self):
-        return f"{self.name}, health: {self.check_life()}"
+        return f"{self.name}, health: {self.check_life()}/{self.maxHP}"
 
     def __repr__(self):
         return self.__str__()
