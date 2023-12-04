@@ -33,7 +33,7 @@ class Warrior(Creature):
             self.abilities["attack"] -= self.shield_abilities["attack"]
             self.abilities["defence"] -= self.shield_abilities["defence"]
 
-    def turn(self, round_num, target_list, allies=None):
+    def turn(self, round_num: int, target_list: list[Creature], allies: list[Creature] = None):
         target = self.auto_select(target_list)
         if target:
             match round_num % 4:

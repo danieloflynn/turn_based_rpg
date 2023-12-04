@@ -1,5 +1,6 @@
 from Orc import Orc
 from Warrior import Warrior
+from Creatures import Creature
 
 
 class OrcGeneral(Orc, Warrior):
@@ -8,7 +9,7 @@ class OrcGeneral(Orc, Warrior):
         self.shield_abilities = shield_abilities
         self.isShieldUp = 0
 
-    def turn(self, round_num, target_list):
+    def turn(self, round_num: int, target_list: list[Creature]):
         target = self.auto_select(target_list)
         if target:
             match round_num % 4:
