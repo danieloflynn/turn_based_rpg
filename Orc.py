@@ -21,7 +21,7 @@ class Orc(Creature):
 
     def attack(self, target):
         if self.inRage:
-            print(f"{self.name} cooled down.")
+            print(f"{self.get_name()} cooled down.")
             self.inRage = 0
             self.abilities["attack"] -= self.rage_abilities["attack"]
             self.abilities["defence"] -= self.rage_abilities["defence"]
@@ -29,7 +29,7 @@ class Orc(Creature):
 
     def heavy_attack(self, target):
         if not self.inRage:
-            print(f"{self.name} is in rage.")
+            print(f"{self.get_name()} is in rage.")
             self.inRage = 1
             self.abilities["attack"] += self.rage_abilities["attack"]
             self.abilities["defence"] += self.rage_abilities["defence"]

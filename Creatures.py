@@ -39,7 +39,7 @@ class Creature:
         else:
             self.HP -= points
 
-    def heal(self, points: int):
+    def increase_health(self, points: int):
         if self.HP + points > self.maxHP:
             self.HP = self.maxHP
         else:
@@ -51,8 +51,6 @@ class Creature:
         # TODO: if health is 0, don't allow attack
         print(f"{self.get_name()} attacks {target.get_name()}")
         roll = randint(1, 20)
-        speed = target.get_speed()
-        defence = target.get_defence()
         if roll > target.get_defence() + target.get_speed():
             bonus = randint(1, 4)
             damage = self.get_attack() + bonus

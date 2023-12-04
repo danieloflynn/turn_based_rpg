@@ -26,7 +26,7 @@ def test():
     assert o1.get_defence() == 5, f"Should be 5"
     assert o1.get_speed() == 3, f"Should be 3"
 
-    o2.heal(15)
+    o2.increase_health(15)
     o1.heavy_attack(o2)
     o1.heavy_attack(o2)
     assert o2.check_life() == 36, "Should be 36"

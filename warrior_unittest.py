@@ -41,7 +41,7 @@ def test():
     # Check that each turn works
     targets = [Warrior("A"), Warrior("B"), Warrior("C")]
     random.seed(1)
-    targets[0].heal(10)
+    targets[0].increase_health(10)
     w1.turn(1, targets)
     assert w1.get_attack() == 1, "Should be 1"
     assert w1.get_defence() == 14, "Should be 14"
@@ -49,21 +49,21 @@ def test():
     ) == 44, f"Life is {targets[0].check_life()}, should be 44"
 
     random.seed(1)
-    targets[0].heal(10)
+    targets[0].increase_health(10)
     w1.turn(2, targets)
     assert w1.get_attack() == 1, "Should be 1"
     assert w1.get_defence() == 14, "Should be 14"
     assert targets[0].check_life() == 48, "Should be 48"
 
     random.seed(1)
-    targets[0].heal(10)
+    targets[0].increase_health(10)
     w1.turn(3, targets)
     assert w1.get_attack() == 1, "Should be 1"
     assert w1.get_defence() == 14, "Should be 14"
     assert targets[0].check_life() == 48, "Should be 48"
 
     random.seed(1)
-    targets[0].heal(10)
+    targets[0].increase_health(10)
     w1.turn(4, targets)
     assert w1.get_attack() == 5, "Should be 5"
     assert w1.get_defence() == 10, "Should be 10"

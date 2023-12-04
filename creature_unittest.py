@@ -30,7 +30,7 @@ def test():
     assert c1.check_life() == 9, "Life should be 9"
 
     # Heal works
-    c1.heal(1)
+    c1.increase_health(1)
     assert c1.check_life() == 10, "Life should be 10"
 
     # Reducing by 0 works
