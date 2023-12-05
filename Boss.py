@@ -28,8 +28,8 @@ class Boss(Orc):
         Args:
             name (str): Name of Boss.
             hp (int, optional): Starting/Max HP of Boss. Defaults to 200.
-            abilities (_type_, optional): Dictionary containing the abilities of the Archer (attack, defence, and speed).. Defaults to default_abilities.
-            rage_abilities (_type_, optional): Dictionary containing the rage abilities of the Archer (attack, defence, and speed).. Defaults to Orc.default_rage.
+            abilities (_type_, optional): Dictionary containing the abilities of the Boss (attack, defence, and speed).. Defaults to default_abilities.
+            rage_abilities (_type_, optional): Dictionary containing the rage abilities of the Boss (attack, defence, and speed).. Defaults to Orc.default_rage.
         """
         Orc.__init__(self, name, hp, abilities, rage_abilities)
 
@@ -58,7 +58,7 @@ class Boss(Orc):
                 return Orc.auto_select(self, target_list)
 
     def turn(self, round_num: int, target_list: list[Creature], allies: list[Creature] = None):
-        """Take turn for Archer. Goes in round robin style. 
+        """Take turn for Boss. Goes in round robin style. 
             Round 1: Attack strongest target with a succession of 3 attacks. If target faints pick another. 
             Round 2-4: Regular attack. Pick weakest target.
 
