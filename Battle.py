@@ -15,7 +15,7 @@ class Battle:
     """Holds all the variables and methods for a battle.
 
     """
-    delay = 0.8
+    round_delay = 1
 
     def __init__(self):
         self.new_battle()
@@ -38,8 +38,29 @@ class Battle:
         ]
 
         self.boss = Boss("Voragor the Dreadlord")
+        self.bossAdded = False
+        self.players = []
+        self.add_players()
 
-        self.hasPlayers = False
+    def add_players(self):
+        input_valid = False
+        while not input_valid:
+            try:
+                num_players = int(input("Please enter number of players: "))
+            except:
+                print("Error: User input not valid.")
+
+            if 0 <= num_players <= 3:
+                self.num_players = num_players
+                for i in range(1, num_players + 1):
+                    name = input(f"Player {i}, please enter your name: ")
+                    player = Wizard(name, player=True)
+                    self.players += [player]
+                    self.allies += [player]
+
+                input_valid = True
+            else:
+                print("Error, please enter a number of players between 0 and 3")
 
     def check_winner(self) -> bool:
         """Checks both teams to see if there is a winner.
@@ -51,7 +72,7 @@ class Battle:
         """
 
         # Check allies first
-        if self.hasPlayers:
+        if self.num_players:
             for player in self.players:
                 if player.check_life() > 0:
                     break
@@ -78,17 +99,53 @@ class Battle:
 
         return True
 
-    def sort_by_speed(creatures: list[Creature]):
+    def sort_by_speed(self, creatures: list[Creature]):
         # Sorts list of creatures by speed.
         creatures.sort(key=lambda c: c.get_speed(), reverse=True)
+
+    def count_alive(self, creatures: list[Creature]):
+        count = 0
+        for creature in creatures:
+            if creature.check_life() > 0:
+                count += 1
+        return count
+
+    def add_boss(self):
+
+        if self.bossAdded:
+            return
+
+        self.bossAdded = True
+        print(f"Suddenly....")
+        sleep(self.round_delay)
+        print(f"{self.boss.get_name()} appears.")
+        sleep(self.round_delay)
+        print(r"""
+                 _____
+                /     \
+               | () () |
+                \  ^  /
+                 |||||
+                 |||||
+                """)
+        sleep(self.round_delay)
+        print("Get ready.")
 
     def start(self):
         print("THE BATTLE BEGINS")
         print("==========================================")
         for round_num in range(1, 21):
-            sleep(0.8)
+
+            if self.count_alive(self.enemies) < 2 and not self.bossAdded:
+                self.add_boss()
+
+            sleep(self.round_delay)
             print(f"Round {round_num}")
             print("==========================================")
+            sleep(self.round_delay)
+
+            self.sort_by_speed(self.allies)
+            self.sort_by_speed(self.enemies)
 
             for enemy in self.enemies:
                 if enemy.check_life() < 0:
@@ -97,14 +154,23 @@ class Battle:
                            allies=self.enemies)
 
             for ally in self.allies:
-                if ally.check_life() < 0:
+                if ally.check_life() <= 0:
                     continue
 
-                ally.turn(round_num, target_list=self.enemies,
-                          allies=self.allies)
+                quit = ally.turn(round_num, target_list=self.enemies,
+                                 allies=self.allies)
+                if quit:
+                    break
 
+            if quit:
+                break
             if self.check_winner():
                 break
+
+            print("==========================================")
+        sleep(self.round_delay)
+        print("==========================================")
+        print("Game over.")
 
 
 B = Battle()

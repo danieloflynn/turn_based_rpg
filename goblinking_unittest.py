@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    GoblinKing.delay = 0
     gk1 = GoblinKing("Terry")
 
     # Test 1 - check correct values for life, attack

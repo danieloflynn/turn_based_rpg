@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    OrcGeneral.delay = 0
     og1 = OrcGeneral("Davinia")
 
     # Test 1 - ensure all variables have been inherited correctly

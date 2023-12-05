@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    Archer.delay = 0
     a1 = Archer("Archy")
     targets = [Archer("A"), Archer("B"), Archer("C")]
 

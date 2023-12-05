@@ -4,6 +4,7 @@ import random
 
 
 def test():
+    Boss.delay = 0
     # Test 1 - check that all
     b1 = Boss("Ted")
     assert b1.check_life() == 200

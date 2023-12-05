@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    Fighter.delay = 0
     # Test 1 - check attributes
     f1 = Fighter("Sam")
     targets = [Fighter("A"), Fighter("B"), Fighter("C")]

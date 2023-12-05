@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    Creature.delay = 0
     # Test 1
     # Check that get methods work
     c1 = Creature("Test1")

@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    Warrior.delay = 0
     # Test 1
     w1 = Warrior("Tim")
     assert w1.get_attack() == 5, "Should be 5"

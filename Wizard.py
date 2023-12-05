@@ -1,6 +1,5 @@
 from Creatures import Creature
 from random import randint
-from time import sleep
 
 
 class Wizard(Creature):
@@ -180,9 +179,8 @@ class Wizard(Creature):
         print(self)
         print("Allies:")
         alive_allies = self.get_alive(allies)
-        if alive_allies:
-            for ally in alive_allies:
-                print(ally)
+        for ally in alive_allies:
+            print(ally)
         else:
             print("None.")
         print("=====================================")
@@ -194,14 +192,16 @@ class Wizard(Creature):
 
         while not input_valid:
             action = input("Enter action: ").lower()
+            if action == "quit":
+                return True
             input_valid = self.player_action(
                 action, round_num, alive_targets, alive_allies)
 
     def turn(self, round_num: int, target_list: list[Creature], allies=None):
         if self.player:
-            self.player_turn(round_num, target_list)
+            return self.player_turn(round_num, target_list, allies)
         else:
-            Creature.turn(self, round_num, target_list)
+            return Creature.turn(self, round_num, target_list, allies)
 
     def __str__(self):
         if self.player:

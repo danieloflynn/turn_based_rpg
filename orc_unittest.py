@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    Orc.delay = 0
     o1 = Orc("Jeremy")
     assert o1.get_name(
     ) == "Jeremy", f"Name should be Derek, is {o1.get_name()}"

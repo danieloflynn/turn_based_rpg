@@ -1,6 +1,5 @@
 from Creatures import Creature
 from random import randint
-from time import sleep
 
 
 class Archer(Creature):

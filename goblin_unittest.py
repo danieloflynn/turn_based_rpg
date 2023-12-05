@@ -3,6 +3,7 @@ import random
 
 
 def test():
+    Goblin.delay = 0
     # Test 1 - test Goblin methods, and make sure attack methods etc. work
     print("Testing Goblin...")
     print("------------------------------------------------------")

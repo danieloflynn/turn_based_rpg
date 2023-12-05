@@ -4,6 +4,7 @@ import random
 
 
 def test():
+    Wizard.delay = 0
     # Test 1 - check all abilities correct
     w1 = Wizard("Dan")
     assert w1.check_life() == 20
