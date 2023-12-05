@@ -1,5 +1,6 @@
 from Creatures import Creature
 from random import randint
+from time import sleep
 
 
 class Archer(Creature):
@@ -54,12 +55,12 @@ class Archer(Creature):
             target (Creature): Creature for the Archer to attack
         """
         if self.powerUp:  # If powered up, power down
-            print(f"{self.get_name()} is powering down...")
+            self.sleep_print(f"{self.get_name()} is powering down...")
 
-            print(f"{self.get_name()}'s attack is reduced.")
+            self.sleep_print(f"{self.get_name()}'s attack is reduced.")
             self.abilities["attack"] -= self.powerup_abilities["attack"]
 
-            print(f"{self.get_name()}'s defence rises.")
+            self.sleep_print(f"{self.get_name()}'s defence rises.")
             self.abilities["defence"] -= self.powerup_abilities["defence"]
 
             self.powerUp = 0
@@ -75,18 +76,19 @@ class Archer(Creature):
             target (Creature): Creature to be attacked.
         """
         if not self.powerUp:  # If not powered up, power up
-            print(f"{self.get_name()} is powering up...")
+            self.sleep_print(f"{self.get_name()} is powering up...")
 
-            print(f"{self.get_name()}'s attack rises.")
+            self.sleep_print(f"{self.get_name()}'s attack rises.")
             self.abilities["attack"] += self.powerup_abilities["attack"]
 
-            print(f"{self.get_name()}'s defence is reduced.")
+            self.sleep_print(f"{self.get_name()}'s defence is reduced.")
             self.abilities["defence"] += self.powerup_abilities["defence"]
 
             self.powerUp = 1
 
         # Attack
-        print(f"{self.get_name()} attacks {target.get_name()} with power shot")
+        self.sleep_print(
+            f"{self.get_name()} attacks {target.get_name()} with power shot")
         roll = max(randint(1, 20), randint(1, 20))  # Highest of 2 rolls
 
         if self.get_speed() > target.get_speed():  # Add speed to roll if speed greater than target
@@ -96,10 +98,10 @@ class Archer(Creature):
         if roll > target.get_defence() + target.get_speed():
             bonus = randint(1, 8)  # Add bonus to damage
             damage = self.get_attack() + bonus
-            print(f"Attack hits for {damage} damage!")
+            self.sleep_print(f"Attack hits for {damage} damage!")
             target.reduce_life(damage)
         else:  # Else attack misses
-            print("Attack missed...")
+            self.sleep_print("Attack missed...")
 
     def auto_select(self, target_list: list[Creature]):
         """Auto selects an alive target given a target list (alive and not alive). Picks alive target with the lowest health. If no targets are alive returns without attacking. 

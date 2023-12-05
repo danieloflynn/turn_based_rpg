@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 # TODO: Make variables private
 
 
@@ -7,6 +8,7 @@ class Creature:
 
     Class Attributes:
     - default_attributes (dict[str, int]): Default abilities for this class, to be used if none supplied in constructor.
+    - isPlayer (bool): Whether the Creature is a player. Set to False.
 
     Instance Attributes:
     - name (str): Name of the creature
@@ -33,6 +35,10 @@ class Creature:
         "speed": 5
     }
 
+    isPlayer = False
+
+    delay = 0.8
+
     def __init__(self, name: str, HP: int = 10, abilities: dict[str, int] = default_abilities):
         """Constructor for Creature.
 
@@ -50,6 +56,11 @@ class Creature:
     def get_name(self):
         # Gets the name of the Creature
         return self.name
+
+    def sleep_print(self, message: str):
+        # Sets a slight delay, and then prints
+        sleep(self.delay)
+        print(message)
 
     def check_life(self):
         # Gets the current HP of the Creature
@@ -76,7 +87,7 @@ class Creature:
         """
         if self.HP < points:  # If amount greater than HP, set HP to 0.
             self.HP = 0
-            print(f"{self.get_name()} fainted.")
+            self.sleep_print(f"{self.get_name()} fainted.")
         else:  # Otherwise take points from HP.
             self.HP -= points
 
@@ -92,8 +103,9 @@ class Creature:
         else:  # Else add points to HP
             self.HP += points
         # Print messages to the effect
-        print(f"{self.get_name()} is healed by {points} points.")
-        print(f"{self.get_name()}'s health is now {self.check_life()}.")
+        self.sleep_print(f"{self.get_name()} is healed by {points} points.")
+        self.sleep_print(
+            f"{self.get_name()}'s health is now {self.check_life()}.")
 
     def attack(self, target: 'Creature'):
         """Attacks a given target.
@@ -103,17 +115,17 @@ class Creature:
         Args:
             target (Creature): Target to be attacked.
         """
-        print(f"{self.get_name()} attacks {target.get_name()}")
+        self.sleep_print(f"{self.get_name()} attacks {target.get_name()}")
 
         roll = randint(1, 20)  # Roll number between 1-20
         if roll > target.get_defence() + target.get_speed():
             # If roll > target defence + speed, attack is successful
             bonus = randint(1, 4)  # bonus roll
             damage = self.get_attack() + bonus
-            print(f"Attack hits for {damage} damage!")
+            self.sleep_print(f"Attack hits for {damage} damage!")
             target.reduce_life(damage)  # Reduce life of target by damage
         else:  # Else attack misses
-            print("Atack missed...")
+            self.sleep_print("Atack missed...")
 
     def get_alive(self, target_list: list['Creature']):
         """Gets the list of alive creatures from a target list

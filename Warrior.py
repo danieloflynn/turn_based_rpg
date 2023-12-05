@@ -1,4 +1,5 @@
 from Creatures import Creature
+from time import sleep
 
 
 class Warrior(Creature):
@@ -21,14 +22,14 @@ class Warrior(Creature):
 
     def shield_up(self):
         if not self.isShieldUp:
-            print(f"{self.get_name()} puts their shield up.")
+            self.sleep_print(f"{self.get_name()} puts their shield up.")
             self.isShieldUp = 1
             self.abilities["attack"] += self.shield_abilities["attack"]
             self.abilities["defence"] += self.shield_abilities["defence"]
 
     def shield_down(self):
         if self.isShieldUp:
-            print(f"{self.get_name()} puts their shield down.")
+            self.sleep_print(f"{self.get_name()} puts their shield down.")
             self.isShieldUp = 0
             self.abilities["attack"] -= self.shield_abilities["attack"]
             self.abilities["defence"] -= self.shield_abilities["defence"]

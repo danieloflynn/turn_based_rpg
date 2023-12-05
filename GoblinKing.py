@@ -1,6 +1,7 @@
 from Goblin import Goblin
 from Archer import Archer
 from Creatures import Creature
+from time import sleep
 
 
 class GoblinKing(Goblin, Archer):

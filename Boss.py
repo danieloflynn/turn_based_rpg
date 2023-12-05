@@ -1,5 +1,6 @@
 from Orc import Orc
 from Creatures import Creature
+from time import sleep
 
 
 class Boss(Orc):

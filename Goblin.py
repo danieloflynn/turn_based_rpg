@@ -1,4 +1,5 @@
 from Creatures import Creature
+from time import sleep
 
 
 class Goblin(Creature):

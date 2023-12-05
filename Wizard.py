@@ -1,5 +1,6 @@
 from Creatures import Creature
 from random import randint
+from time import sleep
 
 
 class Wizard(Creature):
@@ -20,7 +21,7 @@ class Wizard(Creature):
         return self.mana
 
     def increase_mana(self, points: int):
-        print(f"Mana +{points}")
+        self.sleep_print(f"Mana +{points}")
         if self.get_mana() + points > self.max_mana:
             self.mana = self.max_mana
 
@@ -29,9 +30,9 @@ class Wizard(Creature):
 
     def decrease_mana(self, points: int) -> bool:
         if points > self.get_mana():
-            print(f"{self.get_name()} does not have enough mana.")
+            self.sleep_print(f"{self.get_name()} does not have enough mana.")
             return False
-        print(f"Mana -{points}")
+        self.sleep_print(f"Mana -{points}")
         self.mana -= points
         return True
 
@@ -43,34 +44,37 @@ class Wizard(Creature):
         self.increase_mana(20)
 
     def recharge(self):
-        print(f"{self.get_name()} channels magic energy...")
+        self.sleep_print(f"{self.get_name()} channels magic energy...")
         self.increase_mana(30)
-        print(f"{self.get_name()}'s mana is now {self.mana}.")
+        self.sleep_print(f"{self.get_name()}'s mana is now {self.mana}.")
 
     def fire_bolt(self, target: Creature):
-        print(f"{self.get_name()} casts fire bolt on {target.get_name()}")
+        self.sleep_print(
+            f"{self.get_name()} casts fire bolt on {target.get_name()}")
         roll = randint(1, 20)
         roll += self.get_arcana()//2
 
         if roll > target.get_defence() + target.get_speed():
             damage = randint(1, self.get_arcana())
-            print(f"Fire bolt hits for {damage} damage.")
+            self.sleep_print(f"Fire bolt hits for {damage} damage.")
             target.reduce_life(damage)
             self.increase_mana(10)
         else:
-            print("Fire bolt misses.")
+            self.sleep_print("Fire bolt misses.")
 
     def heal(self, target: Creature):
-        print(f"{self.get_name()} attempts to heal {target.get_name()}.")
+        self.sleep_print(
+            f"{self.get_name()} attempts to heal {target.get_name()}.")
         if not self.decrease_mana(20):
             return
         if target.check_life() == 0:
-            print(f"{target.get_name()} is dead and cannot be revived.")
+            self.sleep_print(
+                f"{target.get_name()} is dead and cannot be revived.")
             return
         target.increase_life(randint(1, 8) + self.get_arcana()//2)
 
     def mass_heal(self, allies: list[Creature]):
-        print(f"{self.get_name()} attempts to heal all allies")
+        self.sleep_print(f"{self.get_name()} attempts to heal all allies")
         if not self.decrease_mana(30):
             return
         healing = randint(1, 10) + self.get_arcana()
@@ -85,16 +89,16 @@ class Wizard(Creature):
         roll += self.get_speed()
 
         if roll >= self.get_arcana():
-            print(f"{self.get_name()} takes {roll//2} damage.")
+            self.sleep_print(f"{self.get_name()} takes {roll//2} damage.")
             self.reduce_life(roll//2)
         else:
-            print(f"{self.get_name()} takes {roll} damage.")
+            self.sleep_print(f"{self.get_name()} takes {roll} damage.")
             self.reduce_life(roll)
 
         for enemy in enemies:
             roll = randint(5, 20)
             roll += self.get_arcana()
-            print(f"{enemy.get_name()} takes {roll} damage.")
+            self.sleep_print(f"{enemy.get_name()} takes {roll} damage.")
             enemy.reduce_life(roll)
 
     def select_target(self, target_list: list[Creature]):
@@ -105,7 +109,7 @@ class Wizard(Creature):
         choice = -1
 
         while not (0 <= choice < len(alive_targets)):
-            print("Select target:")
+            self.sleep_print("Select target:")
             for i, target in enumerate(alive_targets):
                 print(f"{i+1}: {target}")
             choice = input("Enter choice: ")
@@ -113,12 +117,12 @@ class Wizard(Creature):
             try:
                 choice = int(choice) - 1
             except:
-                print("Error, invalid input.")
+                self.sleep_print("Error, invalid input.")
                 choice = -1
 
             if not (0 <= choice < len(alive_targets)):
 
-                print(
+                self.sleep_print(
                     f"Error, please enter a number between 1 and {len(alive_targets)}")
         return alive_targets[choice]
 
@@ -143,7 +147,7 @@ class Wizard(Creature):
                     ally = self.select_target(alive_allies)
                     self.heal(ally)
                 else:
-                    print("You have no allies currently alive.")
+                    self.sleep_print("You have no allies currently alive.")
                     return False
             case "2":
                 target = self.select_target(alive_targets)
@@ -152,7 +156,7 @@ class Wizard(Creature):
                 if alive_allies:
                     self.mass_heal(alive_allies)
                 else:
-                    print("You have no allies alive.")
+                    self.sleep_print("You have no allies alive.")
                     return False
             case "4":
                 self.fire_storm(alive_targets)
@@ -164,14 +168,15 @@ class Wizard(Creature):
     def player_turn(self, round_num: int, target_list: list[Creature], allies: list[Creature] = None):
 
         if not self.player:
-            print("Error, non player character cannot take player turn.")
+            self.sleep_print(
+                "Error, non player character cannot take player turn.")
             return
 
         alive_targets = self.get_alive(target_list)
 
         if not alive_targets:
             return
-        print("=====================================")
+        self.sleep_print("=====================================")
         print(self)
         print("Allies:")
         alive_allies = self.get_alive(allies)

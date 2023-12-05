@@ -1,4 +1,5 @@
 from Creatures import Creature
+from time import sleep
 
 
 class Fighter(Creature):
@@ -74,7 +75,7 @@ class Fighter(Creature):
             target_list (list[Creature]): List of targets.
             allies (list[Creature], optional): List of allies. This has no function here but is included for the sake of polymorphism. Defaults to None.
         """
-        print(f"{self.get_name()} unleashes a flurry of strikes")
+        self.sleep_print(f"{self.get_name()} unleashes a flurry of strikes")
         target = self.auto_select(target_list)  # Select target with highest HP
 
         if not target:  # If no alive target, return.
