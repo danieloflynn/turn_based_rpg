@@ -1,6 +1,5 @@
 from random import randint
 # TODO: Make variables private
-# TODO: Make PowerCreature class
 
 
 class Creature:
@@ -11,7 +10,7 @@ class Creature:
         "speed": 5
     }
 
-    def __init__(self, name: str, HP: int = 10, abilities=default_abilities):
+    def __init__(self, name: str, HP: int = 10, abilities: dict[str, int] = default_abilities):
         self.name = name
         self.HP = HP
         self.maxHP = HP
@@ -47,7 +46,7 @@ class Creature:
         print(f"{self.get_name()} is healed by {points} points.")
         print(f"{self.get_name()}'s health is now {self.check_life()}.")
 
-    def attack(self, target):
+    def attack(self, target: 'Creature'):
         # TODO: if health is 0, don't allow attack
         print(f"{self.get_name()} attacks {target.get_name()}")
         roll = randint(1, 20)
@@ -59,7 +58,7 @@ class Creature:
         else:
             print("Atack missed...")
 
-    def get_alive(self, target_list: list):
+    def get_alive(self, target_list: list['Creature']):
         """Gets the list of alive creatures from a target list
 
         Args:
@@ -74,7 +73,7 @@ class Creature:
 
         return alive_targets
 
-    def auto_select(self, target_list):
+    def auto_select(self, target_list: list['Creature']):
         alive_targets = self.get_alive(target_list)
 
         if not alive_targets:
@@ -83,7 +82,7 @@ class Creature:
         rand = randint(0, len(alive_targets)-1)
         return alive_targets[rand]
 
-    def turn(self, round_num, target_list, allies=None):
+    def turn(self, round_num: int, target_list: list['Creature'], allies=None):
         target = self.auto_select(target_list)
         if target:
             self.attack(target)

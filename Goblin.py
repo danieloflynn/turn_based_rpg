@@ -8,5 +8,5 @@ class Goblin(Creature):
         "speed": 3
     }
 
-    def __init__(self, name: str, hp: int = 15, abilities=default_abilities):
+    def __init__(self, name: str, hp: int = 15, abilities: dict[str, int] = default_abilities):
         Creature.__init__(self, name, hp, abilities)

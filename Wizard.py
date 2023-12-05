@@ -10,7 +10,7 @@ class Wizard(Creature):
         "arcana": 10
     }
 
-    def __init__(self, name: str, hp: int = 20, abilities: dict = default_abilities, player=False):
+    def __init__(self, name: str, hp: int = 20, abilities: dict = default_abilities, player: bool = False):
         Creature.__init__(self, name, hp, abilities)
         self.max_mana = 100
         self.mana = self.max_mana
