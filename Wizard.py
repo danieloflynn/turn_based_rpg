@@ -122,11 +122,51 @@ class Wizard(Creature):
                     f"Error, please enter a number between 1 and {len(alive_targets)}")
         return alive_targets[choice]
 
-    # def player_action(self, action: str, round_num: int, target_list: list[Creature], allies):
-    #     if action not in self.actions:
-    #         return False
+    def player_action(self, action: str, round_num: int, alive_targets: list[Creature], alive_allies: list[Creature] = None) -> bool:
 
-    def player_turn(self, round_num: int, target_list: list[Creature], allies=None):
+        if not self.player:
+            print("Error, non player character cannot take player turn.")
+            return True
+
+        if not alive_targets:
+            return True
+
+        match action:
+            case "f":
+                target = self.select_target(alive_targets)
+                self.attack(target)
+
+            case "r":
+                self.recharge()
+            case "1":
+                if alive_allies:
+                    ally = self.select_target(alive_allies)
+                    self.heal(ally)
+                else:
+                    print("You have no allies currently alive.")
+                    return False
+            case "2":
+                target = self.select_target(alive_targets)
+                self.fire_bolt(target)
+            case "3":
+                if alive_allies:
+                    self.mass_heal(alive_allies)
+                else:
+                    print("You have no allies alive.")
+                    return False
+            case "4":
+                self.fire_storm(alive_targets)
+            case _:
+                return False
+
+        return True
+
+    def player_turn(self, round_num: int, target_list: list[Creature], allies: list[Creature] = None):
+
+        if not self.player:
+            print("Error, non player character cannot take player turn.")
+            return
+
         alive_targets = self.get_alive(target_list)
 
         if not alive_targets:
@@ -148,31 +188,9 @@ class Wizard(Creature):
         input_valid = False
 
         while not input_valid:
-            user_input = input("Enter action: ").toLower()
-
-            match user_input:
-                case "f":
-                    target = self.select_target(target_list)
-                    self.attack(target)
-
-                case "r":
-                    self.recharge()
-                case "1":
-                    if alive_allies:
-                        ally = self.select_target(allies)
-                        self.heal(ally)
-                    else:
-                        print("You have no allies currently alive.")
-                case "2":
-                    target = self.select_target(target_list)
-                    self.fire_bolt(target)
-                case "3":
-                    if alive_allies:
-                        self.mass_heal(allies)
-                    else:
-                        print("You have no allies alive.")
-                case "4":
-                    self.fire_storm(target_list)
+            action = input("Enter action: ").lower()
+            input_valid = self.player_action(
+                action, round_num, alive_targets, alive_allies)
 
     def turn(self, round_num: int, target_list: list[Creature], allies=None):
         if self.player:
