@@ -1,30 +1,30 @@
-import creature_unittest
-import goblin_unittest
-import orc_unittest
-import warrior_unittest
-import archer_unittest
-import fighter_unittest
-import orcgeneral_unittest
-import goblinking_unittest
-import boss_unittest
-import wizard_unittest
+import unittest_creature
+import unittest_goblin
+import unittest_orc
+import unittest_warrior
+import unittest_archer
+import unittest_fighter
+import unittest_orcgeneral
+import unittest_goblinking
+import unittest_boss
+import unittest_wizard
 
 # Test Creatures
 print("Testing Creatures")
-creature_unittest.test()
+unittest_creature.test()
 print("------------------------------------------------------")
 
 # Test Goblin
 # Test 2 - test Goblin
 print("Testing Goblin...")
 print("------------------------------------------------------")
-goblin_unittest.test()
+unittest_goblin.test()
 
 # Test 3 - test Orc
 print("------------------------------------------------------")
 print("Testing Orc...")
 print("------------------------------------------------------")
-orc_unittest.test()
+unittest_orc.test()
 print("Orc passed.")
 
 
@@ -32,7 +32,7 @@ print("Orc passed.")
 print("------------------------------------------------------")
 print("Testing Warrior...")
 print("------------------------------------------------------")
-warrior_unittest.test()
+unittest_warrior.test()
 print("Warior passed.")
 
 
@@ -40,7 +40,7 @@ print("Warior passed.")
 print("------------------------------------------------------")
 print("Testing Archer...")
 print("------------------------------------------------------")
-archer_unittest.test()
+unittest_archer.test()
 print("Archer passed.")
 
 
@@ -48,35 +48,35 @@ print("Archer passed.")
 print("------------------------------------------------------")
 print("Testing Fighter...")
 print("------------------------------------------------------")
-fighter_unittest.test()
+unittest_fighter.test()
 print("Fighter passed.")
 
 # Test 7 - Orc General
 print("------------------------------------------------------")
 print("Testing OrcGeneral...")
 print("------------------------------------------------------")
-orcgeneral_unittest.test()
+unittest_orcgeneral.test()
 print("OrcGeneral passed.")
 
 # Test 8 - Goblin King
 print("------------------------------------------------------")
 print("Testing Goblin King...")
 print("------------------------------------------------------")
-goblinking_unittest.test()
+unittest_goblinking.test()
 print("Goblin King passed.")
 
 # Test 9 - Boss
 print("------------------------------------------------------")
 print("Testing Boss...")
 print("------------------------------------------------------")
-boss_unittest.test()
+unittest_boss.test()
 print("Boss passed.")
 
 # Test 9 - Wizard
 print("------------------------------------------------------")
 print("Testing Wizard...")
 print("------------------------------------------------------")
-wizard_unittest.test()
+unittest_wizard.test()
 print("Wizard passed.")
 
 
