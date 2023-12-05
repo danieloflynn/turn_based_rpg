@@ -58,7 +58,7 @@ def test():
 
     # Test 3 - Orc rage on/off
     random.seed(50)
-    og2.increase_health(37)
+    og2.increase_life(37)
     # Rage should be on
     og1.heavy_attack(og2)
 

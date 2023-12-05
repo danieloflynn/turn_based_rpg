@@ -34,7 +34,7 @@ def test():
     assert a1.get_defence() == 6
     assert a1.get_speed() == 8
 
-    targets[0].increase_health(30)
+    targets[0].increase_life(30)
 
     # Test 3 - check regular attack works
     random.seed(1)
@@ -58,7 +58,7 @@ def test():
     # Test 4 - check auto select works
     assert a1.auto_select(targets) == targets[0]
 
-    targets[0].increase_health(20)
+    targets[0].increase_life(20)
     targets[1].reduce_life(10)
 
     assert a1.auto_select(targets) == targets[1]
@@ -75,17 +75,17 @@ def test():
     assert targets[1].check_life() == 12
 
     random.seed(1)
-    targets[1].increase_health(8)
+    targets[1].increase_life(8)
     a1.turn(2, targets)
     assert targets[1].check_life() == 8
 
     random.seed(1)
-    targets[1].increase_health(12)
+    targets[1].increase_life(12)
     a1.turn(3, targets)
     assert targets[1].check_life() == 8
 
     random.seed(1)
-    targets[1].increase_health(12)
+    targets[1].increase_life(12)
     a1.turn(4, targets)
     assert targets[1].check_life() == 8
 

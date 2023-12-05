@@ -22,7 +22,7 @@ class Boss(Orc):
         "speed": 5
     }
 
-    def __init__(self, name: str, hp=200, abilities=default_abilities, rage_abilities=Orc.default_rage):
+    def __init__(self, name: str, hp=200, abilities: dict[str, int] = default_abilities, rage_abilities: [str, int] = Orc.default_rage):
         """Constructor for Boss. Essentially the same as Orc except higher default health and different default abilities.
 
         Args:

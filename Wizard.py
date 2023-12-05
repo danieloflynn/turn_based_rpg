@@ -67,7 +67,7 @@ class Wizard(Creature):
         if target.check_life() == 0:
             print(f"{target.get_name()} is dead and cannot be revived.")
             return
-        target.increase_health(randint(1, 8) + self.get_arcana()//2)
+        target.increase_life(randint(1, 8) + self.get_arcana()//2)
 
     def mass_heal(self, allies: list[Creature]):
         print(f"{self.get_name()} attempts to heal all allies")
@@ -76,7 +76,7 @@ class Wizard(Creature):
         healing = randint(1, 10) + self.get_arcana()
         for ally in allies:
             if ally.check_life() != 0:
-                ally.increase_health(healing)
+                ally.increase_life(healing)
 
     def fire_storm(self, enemies: list[Creature]):
         if not self.decrease_mana(50):

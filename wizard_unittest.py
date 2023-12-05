@@ -58,7 +58,7 @@ def test():
     assert w1.get_mana() == 30
 
     # Test 5 - check firebolt works
-    w2.increase_health(100)
+    w2.increase_life(100)
     random.seed(90)
 
     w1.fire_bolt(w2)
@@ -93,7 +93,7 @@ def test():
     assert w1.get_mana() == 10
 
     # Ensure action does not proceed if not enough mana
-    w2.increase_health(10)
+    w2.increase_life(10)
     w1.heal(w2)
     assert w2.check_life() == 10
     assert w1.get_mana() == 10
@@ -131,7 +131,7 @@ def test():
     # Remove self from enemies list
     enemies = allies[1:]
     for enemy in enemies:
-        enemy.increase_health(100)
+        enemy.increase_life(100)
 
     w1.fire_storm(enemies)
     assert w1.check_life() == 9
@@ -142,7 +142,7 @@ def test():
 
     # Second roll is less than arcana
     w1.increase_mana(60)
-    w1.increase_health(20)
+    w1.increase_life(20)
     w1.fire_storm(enemies)
     assert w1.check_life() == 13
     assert w1.get_mana() == 20
@@ -160,8 +160,8 @@ def test():
     assert enemies[2].check_life() == 0
     assert enemies[3].check_life() == 53
 
-    enemies[0].increase_health(20)
-    enemies[1].increase_health(20)
+    enemies[0].increase_life(20)
+    enemies[1].increase_life(20)
 
     # Test 9 - Select target - wrong inputs should be ignored and repeated
     with mock.patch('Wizard.input', side_effect=[0, 'f', 1, '4', 6, 2]):
@@ -179,7 +179,7 @@ def test():
     allies = [Wizard("Phil"), Wizard("Jim"), Wizard("Tom", hp=100)]
 
     for enemy in enemies:
-        enemy.increase_health(100)
+        enemy.increase_life(100)
 
     with mock.patch('Wizard.input', side_effect=[1, 2, 3]):
 
@@ -218,7 +218,7 @@ def test():
 
     # Test 11 - Test Player turn
     random.seed(83)
-    enemies[0].increase_health(100)
+    enemies[0].increase_life(100)
     # If not player, shouldn't be able to make player turn
     assert w1.player_turn(1, enemies) == None
 
@@ -228,7 +228,7 @@ def test():
     assert player.player_turn(1, enemies) == None
 
     for enemy in enemies:
-        enemy.increase_health(100)
+        enemy.increase_life(100)
     for ally in allies:
         ally.reduce_life(10)
     player.increase_mana(100)
