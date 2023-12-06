@@ -280,15 +280,13 @@ class Wizard(Creature):
 
         alive_targets = self.get_alive(target_list)
 
-        if not alive_targets:
-            return
         self.sleep_print("=====================================")
         print(self)
         print("Allies:")
         alive_allies = self.get_alive(allies)
         for ally in alive_allies:
             print(ally)
-        else:
+        if not alive_targets:
             print("None.")
         print("=====================================")
         print("Actions. F: Attack R: Recharge Mana")

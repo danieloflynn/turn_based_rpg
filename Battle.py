@@ -54,7 +54,8 @@ class Battle:
                 self.num_players = num_players
                 for i in range(1, num_players + 1):
                     name = input(f"Player {i}, please enter your name: ")
-                    player = Wizard(name, player=True)
+                    # Make player HP 30 because it's impossible otherwise
+                    player = Wizard(name, hp=30, player=True)
                     self.players += [player]
                     self.allies += [player]
 

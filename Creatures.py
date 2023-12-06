@@ -85,7 +85,7 @@ class Creature:
         Args:
             points (int): Number of points for the health to be reduced by.
         """
-        if self.HP < points:  # If amount greater than HP, set HP to 0.
+        if self.HP <= points:  # If amount greater than HP, set HP to 0.
             self.HP = 0
             self.sleep_print(f"{self.get_name()} fainted.")
         else:  # Otherwise take points from HP.
