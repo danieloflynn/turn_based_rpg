@@ -33,9 +33,9 @@ class OrcGeneral(Orc, Warrior):
             Round 4: Uses heavy_attack on target.
 
         Args:
-            round_num (int): _description_
-            target_list (list[Creature]): _description_
-            allies (list[Creature], optional): _description_. Defaults to None.
+            round_num (int): Current round number
+            target_list (list[Creature]): List of target creatures
+            allies (list[Creature], optional): List of ally creatures. Not used here but included for polymorphism. Defaults to None.
         """
         target = self.auto_select(target_list)
         if target:
