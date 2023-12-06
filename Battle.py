@@ -116,6 +116,7 @@ class Battle:
             return
 
         self.bossAdded = True
+        self.enemies += [self.boss]
         print(f"Suddenly....")
         sleep(self.round_delay)
         print(f"{self.boss.get_name()} appears.")
@@ -173,5 +174,6 @@ class Battle:
         print("Game over.")
 
 
-B = Battle()
-B.start()
+if __name__ == "__main__":
+    B = Battle()
+    B.start()

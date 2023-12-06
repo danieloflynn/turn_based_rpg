@@ -8,6 +8,7 @@ import unittest_orcgeneral
 import unittest_goblinking
 import unittest_boss
 import unittest_wizard
+import unittest_battle
 
 # Test Creatures
 print("Testing Creatures")
@@ -78,6 +79,13 @@ print("Testing Wizard...")
 print("------------------------------------------------------")
 unittest_wizard.test()
 print("Wizard passed.")
+
+# Test 10 - Battle
+print("------------------------------------------------------")
+print("Testing Battle...")
+print("------------------------------------------------------")
+unittest_battle.test()
+print("Battle passed.")
 
 
 print("------------------------------------------------------")

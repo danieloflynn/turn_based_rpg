@@ -69,6 +69,3 @@ def test():
     assert w1.get_attack() == 5, "Should be 5"
     assert w1.get_defence() == 10, "Should be 10"
     assert targets[0].check_life() == 44, "Should be 44"
-
-
-test()
