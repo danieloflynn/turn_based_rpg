@@ -97,6 +97,10 @@ class Battle:
         for enemy in self.enemies:
             if enemy.check_life() > 0:
                 return False  # If enemy not dead, we know battle isn't over as there's at least one ally alive
+        if self.num_players:
+            print("You win!")
+        else:
+            print("Allies win!")
 
         return True
 
@@ -170,6 +174,7 @@ class Battle:
 
                 if quit:
                     break
+
                 if self.check_winner():
                     break
 
