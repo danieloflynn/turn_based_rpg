@@ -134,45 +134,54 @@ class Battle:
         print("Get ready.")
 
     def start(self):
-        print("THE BATTLE BEGINS")
-        print("==========================================")
-        for round_num in range(1, 21):
 
-            if self.count_alive(self.enemies) < 2 and not self.bossAdded:
-                self.add_boss()
+        playGame = "y"
 
-            sleep(self.round_delay)
-            print(f"Round {round_num}")
+        while playGame == "y":
+            print("THE BATTLE BEGINS")
             print("==========================================")
-            sleep(self.round_delay)
+            for round_num in range(1, 21):
 
-            self.sort_by_speed(self.allies)
-            self.sort_by_speed(self.enemies)
+                if self.count_alive(self.enemies) < 2 and not self.bossAdded:
+                    self.add_boss()
 
-            for enemy in self.enemies:
-                if enemy.check_life() < 0:
-                    continue
-                enemy.turn(round_num, target_list=self.allies,
-                           allies=self.enemies)
+                sleep(self.round_delay)
+                print(f"Round {round_num}")
+                print("==========================================")
+                sleep(self.round_delay)
 
-            for ally in self.allies:
-                if ally.check_life() <= 0:
-                    continue
+                self.sort_by_speed(self.allies)
+                self.sort_by_speed(self.enemies)
 
-                quit = ally.turn(round_num, target_list=self.enemies,
-                                 allies=self.allies)
+                for enemy in self.enemies:
+                    if enemy.check_life() <= 0:
+                        continue
+                    enemy.turn(round_num, target_list=self.allies,
+                               allies=self.enemies)
+
+                for ally in self.allies:
+                    if ally.check_life() <= 0:
+                        continue
+
+                    quit = ally.turn(round_num, target_list=self.enemies,
+                                     allies=self.allies)
+                    if quit:
+                        break
+
                 if quit:
                     break
+                if self.check_winner():
+                    break
 
-            if quit:
-                break
-            if self.check_winner():
-                break
-
+                print("==========================================")
+            sleep(self.round_delay)
             print("==========================================")
-        sleep(self.round_delay)
-        print("==========================================")
-        print("Game over.")
+            print("Game over.")
+
+            playGame = input("Play again? y/[n]").lower()
+
+            if playGame == "y":
+                self.new_battle()
 
 
 if __name__ == "__main__":
