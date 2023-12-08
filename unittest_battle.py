@@ -21,7 +21,7 @@ def test():
         assert b.allies[1].check_life() == 30
         assert b.allies[2].check_life() == 50
         assert b.allies[3].check_life() == 10
-        assert b.allies[4].check_life() == 20
+        assert b.allies[4].check_life() == 30
         assert b.allies[4] == b.players[0]
 
         assert b.boss.check_life() == 200

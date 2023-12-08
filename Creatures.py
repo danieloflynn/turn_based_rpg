@@ -135,6 +135,9 @@ class Creature:
         Returns:
             alive_targets: List of alive targets 
         """
+        if not target_list:
+            return
+
         alive_targets = []
         for target in target_list:
             if target.check_life() != 0:

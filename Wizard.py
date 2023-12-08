@@ -21,7 +21,7 @@ class Wizard(Creature):
     - get_arcana: Get the player's arcana value.
     - attack: Attack a creature and recharge mana by 20.
     - recharge: Recharge mana by 30.
-    - fire_bolt: Throw firebolt at target
+    - fire_bolt: Throw firebolt at target.
     - heal: Heal target and reduce mana by 20.
     - mass_heal: Heal all allies (incl. self) and reduce mana by 30.
     - fire_storm: Hit all enemies and self with fire storm and reduce mana by 50.
@@ -102,10 +102,10 @@ class Wizard(Creature):
 
     def fire_bolt(self, target: Creature):
         """ Casts firebolt at target creature. Adds half Wizard's Arcana to attack roll.
-        If attack successful, applies damage between 1 and current Arcana
+        If attack successful, applies damage between 1 and current Arcana.
 
         Args:
-            target (Creature): _description_
+            target (Creature): Target Creature.
         """
         self.sleep_print(
             f"{self.get_name()} casts fire bolt on {target.get_name()}")
@@ -280,14 +280,15 @@ class Wizard(Creature):
 
         alive_targets = self.get_alive(target_list)
 
+        if not alive_targets:
+            return
         self.sleep_print("=====================================")
         print(self)
         print("Allies:")
         alive_allies = self.get_alive(allies)
         for ally in alive_allies:
             print(ally)
-        if not alive_targets:
-            print("None.")
+
         print("=====================================")
         print("Actions. F: Attack R: Recharge Mana")
         print("Spells. 1: Heal 2: Firebolt 3: Mass Heal 4: Fire Storm")
